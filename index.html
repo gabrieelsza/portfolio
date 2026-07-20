@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gabriel Leonardo — Desenvolvedor Web Júnior </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- LINKS DE ESTILOS -->
+    <link rel="stylesheet" href="./src/css/global.css">
+
+    <!-- LINKS DE INTERAÇÕES -->
+    <script src="./src/js/script.js" defer></script>
+    <script src="./src/js/form.js" defer></script>
+    <script src="./src/js/github-stats.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- FONTES DE TEXTOS -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- TOASTIFY -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+    <header>
+        <div id="thread-wrap">
+            <svg id="thread-svg">
+                <path id="thread-path" d="" />
+            </svg>
+        </div>
+
+        <nav>
+            <div class="logo-mark" id="logo-mark"></div>
+            <div class="nav-links">
+                <a href="#about">Sobre</a>
+                <a href="#stack">Stack</a>
+                <a href="#projects">Projetos</a>
+                <a href="#journey">Jornada</a>
+                <a href="#contact">Contato</a>
+            </div>
+        </nav>
+
+        <article id="hero">
+            <div class="hero-grid">
+                <div>
+                    <h1 class="hero-name">Gabriel<br>Leonardo</h1>
+                    <div class="hero-role">Desenvolvedor FullStack</div>
+                    <div class="hero-sub">Estudante de Análise e Desenvolvimento de Sistemas</div>
+                    <p class="hero-desc">Sou um desenvolvedor web e estudante de analise e desenvolvimento de sistemas,
+                        com foco em criar soluções
+                        práticas e evoluir na área de tecnologia. Tenho experiência com HTML, CSS, JavaScript,
+                        TypeScript,
+                        Node.js, Git e GitHub, além de interesse em banco de dados, APIs, cloud e boas práticas de
+                        desenvolvimento. Gosto de transformar ideias em projetos reais, aprender continuamente e
+                        construir
+                        uma base sólida para oportunidades de estágio e crescimento profissional.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-solid">Ver Projetos →</a>
+                        <a href="https://github.com/gabrieelsza" target="_blank" class="btn btn-ghost">GitHub</a>
+                        <a href="https://www.linkedin.com/in/gabriel-leonardo-/" target="_blank"
+                            class="btn btn-ghost">LinkedIn</a>
+                        <a href="#contact" class="btn btn-ghost">Contato</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <svg viewBox="0 0 400 500">
+                        <path
+                            d="M60 60 C 200 60, 200 160, 340 160 S 480 260, 340 260 C 200 260, 200 360, 60 360 S -80 460, 60 460"
+                            fill="none" stroke="#1F1F1F" stroke-width="4" stroke-linecap="round" />
+                        <circle cx="60" cy="60" r="9" fill="#A82124" />
+                        <circle cx="340" cy="160" r="9" fill="#F2BF22" />
+                        <circle cx="340" cy="260" r="9" fill="#EF9330" />
+                        <circle cx="60" cy="460" r="9" fill="#A82124" />
+                        <rect x="150" y="205" width="70" height="70" rx="14" fill="#F2BF22" opacity="0.9" />
+                        <circle cx="60" cy="360" r="30" fill="none" stroke="#4D342F" stroke-width="4" />
+                    </svg>
+                </div>
+            </div>
+            </section>
+    </header>
+
+    <main>
+        <section id="about">
+            <span class="eyebrow">01 — Sobre</span>
+            <div class="about-grid">
+                <h2 class="about-title">Quem sou, o que busco e como aprendo.</h2>
+                <div class="about-cols">
+                    <div class="about-card">
+                        <h3>Quem sou</h3>
+                        <p>Desenvolvedor web júnior e estudante de Análise e Desenvolvimento de Sistemas, sempre
+                            buscando
+                            transformar ideias em projetos reais.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Objetivos</h3>
+                        <p>Construir uma base sólida em tecnologia e conquistar uma oportunidade de estágio para crescer
+                            profissionalmente.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Minha jornada</h3>
+                        <p>Do primeiro HTML ao TypeScript e Node.js — um caminho contínuo de estudo, prática e evolução
+                            técnica.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Como aprendo</h3>
+                        <p>Na prática: construindo projetos pessoais, testando ferramentas novas e mantendo curiosidade
+                            como
+                            método.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stack">
+            <span class="eyebrow">02 — Stack</span>
+            <h2 class="stack-title">Ferramentas que uso para construir.</h2>
+            <div class="stack-grid">
+                <div class="stack-card frontend">
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li> React </li>
+                        <li>TypeScript</li>
+                    </ul>
+                </div>
+                <div class="stack-card backend">
+                    <h4>Backend</h4>
+                    <ul>
+                        <li>Node.js</li>
+                    </ul>
+                </div>
+                <div class="stack-card tools">
+                    <h4>Ferramentas</h4>
+                    <ul>
+                        <li>Git</li>
+                        <li>GitHub</li>
+                        <li>MySQL</li>
+                        <li>Proste</li>
+                        <li>MongoBD</li>
+                    </ul>
+                </div>
+                <div class="stack-card learning">
+                    <h4>Estudando</h4>
+                    <ul>
+                        <li>Banco de Dados</li>
+                        <li>APIs REST</li>
+                        <li>Cloud Computing</li>
+                        <li>Clean Code</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <span class="eyebrow">03 — Projetos</span>
+            <h2 class="projects-title">Ideias que viraram código.</h2>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-num">Projeto 01</div>
+                    <h3> Controle Financeiro </h3>
+                    <p>
+                        Aplicação web criada para registrar entradas e saídas financeiras, permitindo visualizar
+                        lançamentos e acompanhar a organização do orçamento pessoal. A abordagem técnica utilizou
+                        manipulação do DOM, estruturação de dados em objetos JavaScript, renderização dinâmica da tabela
+                        e persistência de informações no navegador com localStorage.
+                    </p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">LocalStorage</span>
+                    </div>
+                    <a href="#" class="project-link">Ver Projeto →</a>
+                </div>
+                <div class="project-visual"
+                    style="background: url(/src/imagens/fin.png); background-size: cover; object-fit: cover;">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-num">Projeto 02</div>
+                    <h3> E-commerce </h3>
+                    <p>
+                        Projeto de e-commerce/catálogo digital desenvolvido para apresentar camisetas nacionais,
+                        internacionais, NBA, NFL e opções personalizadas de forma visual e comercial. A abordagem
+                        técnica foi pensada para exibir produtos, categorias e chamadas de ação com navegação simples,
+                        layout responsivo e estrutura preparada para evolução futura com dados dinâmicos.
+                    </p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">JSON</span>
+                    </div>
+                    <a href="#" class="project-link">Ver Projeto →</a>
+                </div>
+                <div class="project-visual"
+                    style="background: url(/src/imagens/eco.png); background-size: cover; object-fit: cover;">
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <div class="project-num">Projeto 03</div>
+                    <h3> Delícias do Chefe </h3>
+                    <p> Site institucional desenvolvido para apresentar serviços de buffet para diferentes tipos de
+                        eventos, como casamento, aniversário, formatura e corporativo. A abordagem técnica foi focada em
+                        uma interface responsiva, organização de seções, apresentação clara dos serviços e integração de
+                        formulário de contato para facilitar o atendimento ao cliente.
+                    </p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">EmailJs</span>
+                    </div>
+                    <a href="#" class="project-link">Ver Projeto →</a>
+                </div>
+                <div class="project-visual" onclick=""
+                    style="background: url(/src/imagens/buf.png); background-size: cover; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+
+        <section id="journey">
+            <span class="eyebrow">04 — Jornada</span>
+            <h2 class="journey-title">Uma linha do tempo, ainda em construção.</h2>
+            <div class="journey-track">
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-year">2024 - 2025 </div>
+                    <h3> Inob - Secretario </h3>
+                    <ul>
+                        <li> Registrar e inserir dados das consultas médicas no sistema, incluindo histórico do
+                            paciente, diagnósticos e prescrições.</li>
+                        <li> Receber pacientes, fornecer orientações iniciais, coletar informações básicas e auxiliar no
+                            fluxo do consultório para um atendimento ágil e acolhedor.</li>
+                        <li> Agendar retornos e novas marcações na agenda do médico, gerenciando horários, lembretes e
+                            confirmações para otimizar o cronograma. </li>
+                    </ul>
+                </div>
+                <div class="journey-item">
+                    <div class="journey-dot"></div>
+                    <div class="journey-year">2025 - Atualmente </div>
+                    <h3> Lanlink - Tecnico de monitoramento </h3>
+                    <ul>
+                        <li>
+                            Monitoro sistemas, APIs e infraestrutura via Grafana, identificando anomalias em tempo real
+                            para prevenção de falhas.
+                        </li>
+                        <li>
+                            Gerencio aplicações Windows com SCOM e servidores Linux via Zabbix, assegurando estabilidade
+                            24/7.
+                        </li>
+                        <li>
+                            Acompanho rotinas e workflows no Jira e Zena, escalando tickets e triando incidentes para
+                            equipes especialistas.
+                        </li>
+                        <li>
+                            Gestão de Incidentes: Abertura, triagem e escalonamento de tickets via Jira, seguindo
+                            processos de ITIL para garantir o cumprimento de SLAs.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="githubsec">
+            <div style="background:var(--mustard); margin:0 -8vw; padding:120px 8vw;">
+                <span class="eyebrow">05 — GitHub</span>
+                <h2 class="github-title">Atividade em números.</h2>
+                <div class="github-stats">
+                    <div class="stat-card">
+                        <div class="stat-num" id="repo"></div>
+                        <div class="stat-label">Repositórios</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num"> 3 </div>
+                        <div class="stat-label">Projetos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num" id="commits">340+</div>
+                        <div class="stat-label">Commits</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-num">TS / JS</div>
+                        <div class="stat-label">Mais usadas</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <span class="eyebrow">06 — Contato</span>
+            <div class="contact-grid">
+                <form id="contact-form">
+                    <h2 class="contact-title">Vamos conversar.</h2>
+                    <div class="field">
+                        <label>Nome </label>
+                        <input type="text" id="name" placeholder="Seu nome">
+                    </div>
+                    <div class="field">
+                        <label>Email </label>
+                        <input type="email" id="mailito" placeholder="seu@email.com">
+                    </div>
+                    <div class="field"> <label> Mensagem </label>
+                        <textarea rows="4" placeholder="Sua mensagem" id="message">
+                        </textarea>
+                    </div>
+                    <button class="btn btn-solid" id="btnSubmit"> Enviar mensagem </button>
+                </form>
+                <div class="contact-links">
+                    <a href="https://github.com/gabrieelsza" target="_blank"> ↗ GitHub </a>
+                    <a href="https://www.linkedin.com/in/gabriel-leonardo-" target="_blank"> ↗ LinkedIn </a>
+                    <a href="mailto:biel.leonardo300@gmail.com"> ↗ Email </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="foot-line">"Construindo soluções, uma linha de código por vez."</div>
+        <div class="foot-meta">Gabriel Leonardo — Desenvolvedor Web © 2026</div>
+    </footer>
+</body>
+
+</html>
