@@ -84,122 +84,7 @@ section, article {
   fill: var(--red);
 }
 
-/* ===== NAVBAR ===== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 26px 8vw;
-  mix-blend-mode: normal;
-}
-
-.logo-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 3px solid var(--black);
-  position: relative;
-}
-
-.logo-mark::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  background: var(--red);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.nav-links {
-  display: flex;
-  gap: 40px;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.nav-links a {
-  position: relative;
-  padding-bottom: 4px;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--red);
-  transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-
-/* ===== HERO ===== */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: 0;
-  position: relative;
-  z-index: 2;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 60px;
-  width: 100%;
-  align-items: center;
-}
-
-.hero-name {
-  font-size: clamp(48px, 7vw, 104px);
-}
-
-.hero-role {
-  font-size: clamp(20px, 2.4vw, 30px);
-  font-weight: 700;
-  color: var(--red);
-  margin-top: 14px;
-}
-
-.hero-sub {
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--brown);
-  margin-top: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.hero-desc {
-  max-width: 520px;
-  font-size: 16.5px;
-  line-height: 1.65;
-  color: var(--black);
-  margin-top: 32px;
-  font-weight: 400;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 14px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
+/* ===== SHARED BUTTONS (Navbar & Hero styles live in ./hero.css) ===== */
 .btn {
   padding: 14px 26px;
   border-radius: 100px;
@@ -229,16 +114,6 @@ nav {
   background: var(--black);
   color: var(--cream);
   transform: translateY(-2px);
-}
-
-.hero-visual {
-  position: relative;
-  height: 520px;
-}
-
-.hero-visual svg {
-  width: 100%;
-  height: 100%;
 }
 
 /* ===== ABOUT ===== */
@@ -643,7 +518,6 @@ footer .foot-meta {
 }
 
 @media (max-width: 860px) {
-  .hero-grid,
   .about-grid,
   .stack-grid,
   .project-card,
@@ -657,14 +531,5 @@ footer .foot-meta {
 
   section {
     padding: 90px 6vw;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .hero-visual {
-    height: 320px;
-    order: -1;
   }
 }

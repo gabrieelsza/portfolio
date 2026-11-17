@@ -1,0 +1,1162 @@
+/* ==========================================================================
+   HERO & PAGE ENTRY — Editorial Systems Architecture Design
+   ========================================================================== */
+
+:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --nav-height: 78px;
+}
+
+/* Lock scroll briefly while intro curtain is active */
+body.intro-active {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   1. ARCHITECTURAL INTRO CURTAIN (SPLASH REVEAL)
+   ========================================================================== */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--black);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 4vw, 48px) 8vw;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: transform 0.85s var(--ease-curtain), opacity 0.45s ease;
+  will-change: transform;
+}
+
+#intro-screen.is-leaving {
+  transform: translateY(-102%);
+  pointer-events: none;
+}
+
+#intro-screen.is-done {
+  display: none;
+}
+
+/* Subtle grid texture inside intro curtain */
+#intro-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(247, 242, 232, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.intro-top,
+.intro-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 242, 232, 0.6);
+}
+
+.intro-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mustard);
+  margin-right: 8px;
+  vertical-align: middle;
+  animation: pulseDot 1.2s ease-in-out infinite;
+}
+
+.intro-center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+}
+
+.intro-emblem {
+  width: 84px;
+  height: 84px;
+}
+
+.intro-ring {
+  fill: none;
+  stroke: var(--cream);
+  stroke-width: 3;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: drawIntroStroke 0.7s var(--ease-expo) 0.08s forwards;
+}
+
+.intro-core {
+  fill: var(--red);
+  transform-origin: center;
+  transform: scale(0);
+  animation: popNode 0.45s var(--ease-expo) 0.35s forwards;
+}
+
+.intro-orbit-dot {
+  fill: var(--mustard);
+  transform-origin: center;
+  transform: scale(0);
+  animation: popNode 0.4s var(--ease-expo) 0.5s forwards;
+}
+
+.intro-brand-mask {
+  overflow: hidden;
+}
+
+.intro-brand {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  transform: translateY(110%);
+  animation: maskRise 0.65s var(--ease-expo) 0.18s forwards;
+}
+
+.intro-brand span {
+  color: var(--mustard);
+}
+
+.intro-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.2vw, 13px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 242, 232, 0.72);
+  opacity: 0;
+  animation: fadeSimple 0.5s ease 0.32s forwards;
+}
+
+.intro-progress-wrap {
+  width: min(320px, 72vw);
+  height: 3px;
+  background: rgba(247, 242, 232, 0.16);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.intro-progress-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--red), var(--orange), var(--mustard));
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: introProgress 0.85s var(--ease-expo) 0.1s forwards;
+}
+
+.intro-skip {
+  background: transparent;
+  border: 1px solid rgba(247, 242, 232, 0.25);
+  color: rgba(247, 242, 232, 0.78);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.intro-skip:hover {
+  border-color: var(--mustard);
+  color: var(--black);
+  background: var(--mustard);
+}
+
+/* Accent wipe strip trailing the curtain */
+#intro-screen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 6px;
+  background: var(--red);
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR (Adaptive Contrast + Mobile Drawer)
+   ========================================================================== */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8vw;
+  background: rgba(247, 242, 232, 0);
+  border-bottom: 1.5px solid transparent;
+  transition:
+    padding 0.35s var(--ease-expo),
+    background 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.7s var(--ease-expo),
+    opacity 0.7s ease;
+}
+
+.site-nav.is-scrolled {
+  padding: 14px 8vw;
+  background: rgba(247, 242, 232, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(31, 31, 31, 0.14);
+  box-shadow: 0 8px 28px rgba(31, 31, 31, 0.06);
+}
+
+.nav-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  position: relative;
+  transition: transform 0.4s var(--ease-expo), border-color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: var(--red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.35s var(--ease-expo), background 0.25s ease;
+}
+
+.nav-brand:hover .logo-mark {
+  transform: rotate(90deg);
+  border-color: var(--red);
+}
+
+.nav-brand:hover .logo-mark::after {
+  transform: translate(-50%, -50%) scale(1.25);
+  background: var(--mustard);
+}
+
+.nav-brand-text span {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--black);
+}
+
+.nav-links a {
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.32s var(--ease-expo);
+}
+
+.nav-links a:hover,
+.nav-links a.is-active {
+  color: var(--red);
+}
+
+.nav-links a:hover::after,
+.nav-links a.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.nav-cta {
+  padding: 9px 18px !important;
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--cream) !important;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.25s var(--ease-expo), background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(168, 33, 36, 0.25);
+}
+
+/* Mobile Menu Button */
+.nav-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  border: 2px solid var(--black);
+  background: var(--cream);
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 220;
+  transition: background 0.2s ease;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-expo), opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Navigation Drawer */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background: var(--black);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 96px 8vw 48px;
+  gap: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-16px);
+  transition: opacity 0.35s ease, transform 0.45s var(--ease-expo);
+}
+
+.mobile-drawer.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.mobile-drawer a {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 8vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(247, 242, 232, 0.12);
+  transition: color 0.2s ease, transform 0.25s var(--ease-expo);
+}
+
+.mobile-drawer a span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--mustard);
+}
+
+.mobile-drawer a:hover {
+  color: var(--mustard);
+  transform: translateX(8px);
+}
+
+/* ==========================================================================
+   3. HERO SECTION — Layout & Choreographed Entrance
+   ========================================================================== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--nav-height) + 42px) 8vw 56px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(rgba(31, 31, 31, 0.085) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Subtle decorative vertical architectural guide */
+#hero::after {
+  content: "";
+  position: absolute;
+  right: 8vw;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(31, 31, 31, 0.08) 20%,
+    rgba(31, 31, 31, 0.08) 80%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+  gap: clamp(36px, 5vw, 72px);
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Status Pill */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--black);
+  background: var(--cream);
+  box-shadow: 3px 3px 0 var(--black);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.hero-badge-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #1f8a4c;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hero-badge-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #1f8a4c;
+  animation: pingRing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Editorial Masked Display Name */
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6.8vw, 96px);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  color: var(--black);
+}
+
+.hero-name-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.hero-name-inner {
+  display: inline-block;
+}
+
+.hero-name-accent {
+  color: var(--red);
+  display: inline-block;
+}
+
+/* Kinetic Role Row */
+.hero-role-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  min-height: 38px;
+}
+
+.hero-role-prefix {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(16px, 2vw, 22px);
+  color: var(--orange);
+}
+
+.hero-role-rotator {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.3vw, 28px);
+  font-weight: 700;
+  color: var(--red);
+  position: relative;
+  display: inline-block;
+  transition: opacity 0.32s ease, transform 0.35s var(--ease-expo);
+}
+
+.hero-role-rotator.is-switching {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.hero-sub {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--brown);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+
+.hero-desc {
+  max-width: 540px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2b2725;
+  margin-top: 24px;
+  font-weight: 400;
+}
+
+.hero-desc strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Action Buttons — Tactile Editorial Finish */
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons .btn {
+  padding: 13px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: var(--font-display);
+  border: 2px solid var(--black);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease-expo),
+    box-shadow 0.25s var(--ease-expo),
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.hero-buttons .btn-solid {
+  background: var(--black);
+  color: var(--cream);
+  box-shadow: 4px 4px 0 var(--red);
+}
+
+.hero-buttons .btn-solid:hover {
+  background: var(--red);
+  border-color: var(--red);
+  box-shadow: 5px 5px 0 var(--black);
+  transform: translate(-2px, -2px);
+}
+
+.hero-buttons .btn-solid .btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-expo);
+}
+
+.hero-buttons .btn-solid:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.hero-buttons .btn-ghost {
+  background: var(--cream);
+  color: var(--black);
+}
+
+.hero-buttons .btn-ghost:hover {
+  background: var(--black);
+  color: var(--cream);
+  box-shadow: 4px 4px 0 var(--mustard);
+  transform: translate(-2px, -2px);
+}
+
+/* Highlights Telemetry Strip */
+.hero-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 560px;
+  margin-top: 38px;
+  padding-top: 24px;
+  border-top: 1.5px solid rgba(31, 31, 31, 0.18);
+}
+
+.hero-highlight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-highlight-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brown);
+}
+
+.hero-highlight-value {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--black);
+}
+
+/* ==========================================================================
+   4. HERO VISUAL — Interactive Animated Systems Architecture Canvas
+   ========================================================================== */
+.hero-visual {
+  position: relative;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.hero-visual-stage {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-circuit-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Animated circuit path draw-in */
+.circuit-track {
+  fill: none;
+  stroke: var(--black);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  transition: stroke-dashoffset 1.45s var(--ease-expo);
+}
+
+.circuit-track-secondary {
+  fill: none;
+  stroke: var(--brown);
+  stroke-width: 2;
+  stroke-dasharray: 6 7;
+  opacity: 0;
+  transition: opacity 0.9s ease 0.55s;
+}
+
+.hero-shape-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: transform 0.65s var(--ease-expo), opacity 0.5s ease;
+}
+
+.hero-shape-float-a {
+  animation: floatSlow 6.5s ease-in-out infinite;
+}
+
+.hero-shape-float-b {
+  animation: floatSlowReverse 7.5s ease-in-out infinite;
+}
+
+.hero-node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: svgPulse 2.8s ease-out infinite;
+}
+
+.signal-packet {
+  opacity: 0;
+  transition: opacity 0.6s ease 0.9s;
+}
+
+/* Floating Editorial Telemetry Cards */
+.hero-float-card {
+  position: absolute;
+  background: var(--cream);
+  border: 2.5px solid var(--black);
+  border-radius: 14px;
+  padding: 12px 16px;
+  box-shadow: 5px 5px 0 var(--black);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 3;
+  will-change: transform;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-float-card:hover {
+  box-shadow: 7px 7px 0 var(--red);
+}
+
+.hero-float-card.card-status {
+  top: 26px;
+  right: 8px;
+  background: var(--black);
+  color: var(--cream);
+  box-shadow: 5px 5px 0 var(--mustard);
+  animation: cardFloatA 6s ease-in-out infinite;
+}
+
+.hero-float-card.card-stack {
+  top: 44%;
+  left: -10px;
+  background: var(--mustard);
+  color: var(--black);
+  animation: cardFloatB 7s ease-in-out infinite;
+}
+
+.hero-float-card.card-focus {
+  bottom: 34px;
+  right: 16px;
+  background: var(--cream);
+  color: var(--black);
+  animation: cardFloatA 6.8s ease-in-out 0.6s infinite;
+}
+
+.float-card-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.float-card-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.status-live-pip {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  display: inline-block;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   5. SCROLL DOWN CUE
+   ========================================================================== */
+.hero-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 34px auto 0;
+  max-width: 1360px;
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--brown);
+  position: relative;
+  z-index: 2;
+}
+
+.hero-scroll-cue a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: color 0.2s ease;
+}
+
+.hero-scroll-cue a:hover {
+  color: var(--red);
+}
+
+.scroll-line {
+  width: 44px;
+  height: 2px;
+  background: rgba(31, 31, 31, 0.2);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  background: var(--red);
+  animation: scrollBeam 1.9s var(--ease-expo) infinite;
+}
+
+/* ==========================================================================
+   6. CHOREOGRAPHED ENTRY STATES (Triggered by JS adding .hero-ready / .hero-revealed)
+   ========================================================================== */
+body.hero-js-enabled .site-nav {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+body.hero-js-enabled [data-hero-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.75s var(--ease-expo), transform 0.85s var(--ease-expo);
+}
+
+body.hero-js-enabled .hero-name-inner {
+  transform: translateY(112%);
+  transition: transform 0.9s var(--ease-expo);
+}
+
+body.hero-js-enabled .hero-float-card {
+  opacity: 0;
+  transform: translateY(24px) scale(0.94);
+  transition: opacity 0.7s var(--ease-expo), transform 0.8s var(--ease-expo), box-shadow 0.25s ease;
+}
+
+/* Revealed State */
+body.hero-revealed .site-nav {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.hero-revealed [data-hero-reveal] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.hero-revealed .hero-name-inner {
+  transform: translateY(0);
+}
+
+body.hero-revealed .hero-name-line:nth-child(1) .hero-name-inner {
+  transition-delay: 0.08s;
+}
+
+body.hero-revealed .hero-name-line:nth-child(2) .hero-name-inner {
+  transition-delay: 0.18s;
+}
+
+body.hero-revealed [data-hero-reveal="1"] { transition-delay: 0.04s; }
+body.hero-revealed [data-hero-reveal="2"] { transition-delay: 0.28s; }
+body.hero-revealed [data-hero-reveal="3"] { transition-delay: 0.36s; }
+body.hero-revealed [data-hero-reveal="4"] { transition-delay: 0.44s; }
+body.hero-revealed [data-hero-reveal="5"] { transition-delay: 0.54s; }
+body.hero-revealed [data-hero-reveal="6"] { transition-delay: 0.66s; }
+body.hero-revealed [data-hero-reveal="7"] { transition-delay: 0.78s; }
+
+body.hero-revealed .circuit-track {
+  stroke-dashoffset: 0;
+  transition-delay: 0.22s;
+}
+
+body.hero-revealed .circuit-track-secondary {
+  opacity: 0.55;
+}
+
+body.hero-revealed .hero-shape-node {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body.hero-revealed .hero-shape-node.node-1 { transition-delay: 0.35s; }
+body.hero-revealed .hero-shape-node.node-2 { transition-delay: 0.48s; }
+body.hero-revealed .hero-shape-node.node-3 { transition-delay: 0.6s; }
+body.hero-revealed .hero-shape-node.node-4 { transition-delay: 0.72s; }
+body.hero-revealed .hero-shape-node.node-5 { transition-delay: 0.84s; }
+
+body.hero-revealed .signal-packet {
+  opacity: 1;
+}
+
+body.hero-revealed .hero-float-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+body.hero-revealed .hero-float-card.card-status { transition-delay: 0.5s; }
+body.hero-revealed .hero-float-card.card-stack  { transition-delay: 0.65s; }
+body.hero-revealed .hero-float-card.card-focus  { transition-delay: 0.8s; }
+
+/* ==========================================================================
+   7. KEYFRAMES
+   ========================================================================== */
+@keyframes drawIntroStroke {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes popNode {
+  to { transform: scale(1); }
+}
+
+@keyframes maskRise {
+  to { transform: translateY(0); }
+}
+
+@keyframes fadeSimple {
+  to { opacity: 1; }
+}
+
+@keyframes introProgress {
+  0% { transform: scaleX(0); }
+  55% { transform: scaleX(0.72); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+@keyframes pingRing {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  80%, 100% { transform: scale(2.1); opacity: 0; }
+}
+
+@keyframes svgPulse {
+  0% { transform: scale(1); opacity: 0.75; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-9px); }
+}
+
+@keyframes floatSlowReverse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(9px); }
+}
+
+@keyframes cardFloatA {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -7px; }
+}
+
+@keyframes cardFloatB {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 7px; }
+}
+
+@keyframes scrollBeam {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(220%); }
+}
+
+/* ==========================================================================
+   8. RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .hero-visual {
+    height: 390px;
+    order: -1;
+  }
+
+  .hero-visual-stage {
+    max-width: 420px;
+  }
+
+  .hero-float-card.card-stack {
+    left: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .site-nav {
+    padding: 16px 6vw;
+  }
+
+  .site-nav.is-scrolled {
+    padding: 12px 6vw;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  #hero {
+    padding: calc(var(--nav-height) + 22px) 6vw 48px;
+  }
+
+  .hero-highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .hero-scroll-cue {
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-visual {
+    height: 310px;
+  }
+
+  .hero-float-card {
+    padding: 9px 12px;
+    border-radius: 10px;
+  }
+
+  .float-card-title {
+    font-size: 13px;
+  }
+
+  .hero-float-card.card-status {
+    top: 10px;
+    right: 0;
+  }
+
+  .hero-float-card.card-focus {
+    bottom: 10px;
+    right: 0;
+  }
+
+  .hero-highlights {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   9. ACCESSIBILITY — REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  #intro-screen {
+    display: none !important;
+  }
+
+  body.hero-js-enabled .site-nav,
+  body.hero-js-enabled [data-hero-reveal],
+  body.hero-js-enabled .hero-name-inner,
+  body.hero-js-enabled .hero-float-card,
+  .circuit-track,
+  .circuit-track-secondary,
+  .hero-shape-node,
+  .signal-packet {
+    opacity: 1 !important;
+    transform: none !important;
+    stroke-dashoffset: 0 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .hero-shape-float-a,
+  .hero-shape-float-b,
+  .hero-node-pulse,
+  .hero-badge-dot::after,
+  .scroll-line::after,
+  .status-live-pip {
+    animation: none !important;
+  }
+}
