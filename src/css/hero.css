@@ -164,6 +164,9 @@ body.intro-active {
 }
 
 .intro-skip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   background: transparent;
   border: 1px solid rgba(247, 242, 232, 0.25);
   color: rgba(247, 242, 232, 0.78);
@@ -175,6 +178,16 @@ body.intro-active {
   border-radius: 999px;
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.intro-skip i {
+  font-size: 0.95em;
+  line-height: 1;
+  transition: transform 0.22s var(--ease-expo);
+}
+
+.intro-skip:hover i {
+  transform: translateX(3px);
 }
 
 .intro-skip:hover {

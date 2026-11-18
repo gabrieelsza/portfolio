@@ -280,6 +280,11 @@
   pointer-events: none;
 }
 
+.project-media-hint i {
+  font-size: 0.9em;
+  line-height: 1;
+}
+
 .project-frame-trigger:hover .project-media-hint,
 .project-frame-trigger:focus-visible .project-media-hint {
   opacity: 1;
@@ -441,6 +446,21 @@
   flex-shrink: 0;
 }
 
+.project-btn i {
+  font-size: 0.9em;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.22s var(--ease-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.project-btn--primary:hover .fa-arrow-up-right-from-square {
+  transform: translate(2px, -2px);
+}
+
+.project-btn--details:hover .fa-arrow-right-long {
+  transform: translateX(3px);
+}
+
 .project-btn--primary {
   background: var(--black);
   color: var(--cream);
@@ -533,6 +553,14 @@
   transform: translateY(-2px);
 }
 
+.projects-footer-link i {
+  transition: transform 0.22s var(--ease-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.projects-footer-link:hover i {
+  transform: translateX(4px);
+}
+
 /* ==========================================================================
    ACCESSIBLE CASE STUDY & PREVIEW MODAL
    ========================================================================== */
@@ -567,7 +595,9 @@
   z-index: 2;
   width: min(960px, 100%);
   max-height: min(90vh, 880px);
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: var(--cream);
   color: var(--black);
   border: 3px solid var(--black);
@@ -575,6 +605,14 @@
   box-shadow: 10px 10px 0 var(--black);
   transform: translateY(18px) scale(0.97);
   transition: transform 0.35s var(--ease-expo, cubic-bezier(0.16, 1, 0.3, 1));
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-modal-dialog::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .project-modal.is-open .project-modal-dialog {
@@ -582,8 +620,7 @@
 }
 
 .project-modal-top {
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 4;
   display: flex;
   align-items: center;
@@ -593,6 +630,24 @@
   background: var(--black);
   color: var(--cream);
   border-bottom: 2.5px solid var(--black);
+}
+
+.project-modal-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.project-modal-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .project-modal-kicker {
@@ -816,8 +871,14 @@
   .project-modal,
   .project-modal-dialog,
   .project-btn,
+  .project-btn i,
+  .projects-footer-link i,
   .filter-btn {
     transition: none !important;
     animation: none !important;
+  }
+
+  .project-modal-scroll {
+    scroll-behavior: auto;
   }
 }
