@@ -60,32 +60,45 @@ function buildThread() {
 
 window.addEventListener('load', buildThread);
 window.addEventListener('resize', buildThread);
+window.rebuildThread = buildThread;
 
-// Scroll fade-up reveal for main content sections (Hero has its own entrance choreography)
-const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            e.target.style.opacity = 1;
-            e.target.style.transform = 'translateY(0)';
+// Scroll fade-up reveal for main content sections (safe for deep links, tall sections, and reduced motion)
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mainSections = document.querySelectorAll('main section');
+
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const revealSection = (el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    };
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                revealSection(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
+
+    mainSections.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isBelowFold = rect.top > window.innerHeight * 0.95;
+
+        if (isBelowFold) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity .65s ease, transform .65s ease';
+            obs.observe(el);
+        } else {
+            revealSection(el);
         }
     });
-}, { threshold: 0.12 });
 
-document.querySelectorAll('main section').forEach(el => {
-    el.style.opacity = 0;
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity .7s ease, transform .7s ease';
-    obs.observe(el);
-});
-
-const projects = document.querySelectorAll("#projects .project-visual");
-
-function modalImageProject() {
-    projects.forEach((e) => {
-        e.addEventListener("click", (event) => {
-            event.currentTarget.classList.toggle("modal");
-        });
+    // Guarantee target section is immediately visible on hash navigation
+    window.addEventListener('hashchange', () => {
+        const targetId = window.location.hash.slice(1);
+        const target = targetId ? document.getElementById(targetId) : null;
+        if (target) revealSection(target);
     });
 }
-
-modalImageProject();

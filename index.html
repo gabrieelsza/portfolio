@@ -13,10 +13,12 @@
     <!-- LINKS DE ESTILOS -->
     <link rel="stylesheet" href="./src/css/global.css">
     <link rel="stylesheet" href="./src/css/hero.css">
+    <link rel="stylesheet" href="./src/css/projects.css">
 
     <!-- LINKS DE INTERAÇÕES -->
     <script src="./src/js/hero-animation.js" defer></script>
     <script src="./src/js/script.js" defer></script>
+    <script src="./src/js/projects.js" defer></script>
     <script src="./src/js/form.js" defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
@@ -29,6 +31,9 @@
 
     <!-- TOASTIFY -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <!-- ICONES  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
 
 </head>
 
@@ -37,7 +42,7 @@
     <div id="intro-screen" role="status" aria-label="Carregando portfólio de Gabriel Leonardo">
         <div class="intro-top">
             <span><span class="intro-status-dot" aria-hidden="true"></span>SYS.INIT // PORTFOLIO</span>
-            <span id="intro-counter">000%</span>
+            <span>CARREGANDO</span>
         </div>
 
         <div class="intro-center">
@@ -56,8 +61,8 @@
         </div>
 
         <div class="intro-bottom">
-            <span>BR // ADS · 2026</span>
-            <button type="button" class="intro-skip" id="intro-skip">Pular →</button>
+            <span>BR // ADS</span>
+            <button type="button" class="intro-skip" id="intro-skip">Pular <i class="fa-solid fa-arrow-right-long"></i></button>
         </div>
     </div>
 
@@ -75,7 +80,7 @@
             </a>
 
             <div class="nav-links">
-                <a href="#about">Sobre</a>
+                <a href="#about">Sobre </a>
                 <a href="#stack">Stack</a>
                 <a href="#projects">Projetos</a>
                 <a href="#journey">Jornada</a>
@@ -92,12 +97,12 @@
         </nav>
 
         <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
-            <a href="#about"><span>01</span>Sobre</a>
-            <a href="#stack"><span>02</span>Stack</a>
-            <a href="#projects"><span>03</span>Projetos</a>
-            <a href="#journey"><span>04</span>Jornada</a>
-            <a href="#githubsec"><span>05</span>GitHub</a>
-            <a href="#contact"><span>06</span>Contato</a>
+            <a href="#about">Sobre</a>
+            <a href="#stack">Stack</a>
+            <a href="#projects">Projetos</a>
+            <a href="#journey">Jornada</a>
+            <a href="#githubsec">GitHub</a>
+            <a href="#contact">Contato</a>
         </div>
 
         <article id="hero">
@@ -133,7 +138,7 @@
                     <div class="hero-buttons" data-hero-reveal="5">
                         <a href="#projects" class="btn btn-solid">
                             <span>Ver Projetos</span>
-                            <span class="btn-arrow" aria-hidden="true">→</span>
+                            <span class="btn-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
                         </a>
                         <a href="https://github.com/gabrieelsza" target="_blank" rel="noopener noreferrer"
                             class="btn btn-ghost">GitHub</a>
@@ -242,7 +247,7 @@
 
     <main>
         <section id="about">
-            <span class="eyebrow">01 — Sobre</span>
+            <span class="eyebrow">Sobre</span>
             <div class="about-grid">
                 <h2 class="about-title">Quem sou, o que busco e como aprendo.</h2>
                 <div class="about-cols">
@@ -273,40 +278,43 @@
         </section>
 
         <section id="stack">
-            <span class="eyebrow">02 — Stack</span>
+            <span class="eyebrow">Stack</span>
             <h2 class="stack-title">Ferramentas que uso para construir.</h2>
             <div class="stack-grid">
                 <div class="stack-card frontend">
                     <h4>Frontend</h4>
                     <ul>
-                        <li>HTML</li>
-                        <li>CSS</li>
+                        <li>HTML &amp; CSS</li>
                         <li>JavaScript</li>
-                        <li> React </li>
                         <li>TypeScript</li>
+                        <li>React</li>
+                        <li>Tailwind CSS</li>
                     </ul>
                 </div>
                 <div class="stack-card backend">
                     <h4>Backend</h4>
                     <ul>
                         <li>Node.js</li>
+                        <li>Express</li>
+                        <li>Prisma &amp; Drizzle</li>
+                        <li>APIs REST &amp; JWT</li>
                     </ul>
                 </div>
                 <div class="stack-card tools">
-                    <h4>Ferramentas</h4>
+                    <h4>Dados &amp; Infra</h4>
                     <ul>
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>MySQL</li>
-                        <li>Proste</li>
-                        <li>MongoBD</li>
+                        <li>PostgreSQL</li>
+                        <li>SQLite &amp; MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Docker</li>
+                        <li>Git &amp; GitHub</li>
                     </ul>
                 </div>
                 <div class="stack-card learning">
-                    <h4>Estudando</h4>
+                    <h4>Qualidade &amp; Estudo</h4>
                     <ul>
-                        <li>Banco de Dados</li>
-                        <li>APIs REST</li>
+                        <li>Vitest &amp; Jest</li>
+                        <li>Testes de Integração</li>
                         <li>Cloud Computing</li>
                         <li>Clean Code</li>
                     </ul>
@@ -314,78 +322,463 @@
             </div>
         </section>
 
-        <section id="projects">
-            <span class="eyebrow">03 — Projetos</span>
-            <h2 class="projects-title">Ideias que viraram código.</h2>
+        <section id="projects" aria-labelledby="projects-heading">
+            <div class="projects-container">
+                <div class="projects-header">
+                    <div class="projects-header-copy">
+                        <span class="eyebrow">Projetos</span>
+                        <h2 id="projects-heading" class="projects-title">Ideias que viraram produto.</h2>
+                        <p class="projects-lead">
+                            Seleção dos meus projetos mais recentes — de sistemas full-stack com IA, banco de dados e
+                            testes automatizados a interfaces editoriais prontas para produção.
+                        </p>
+                    </div>
 
-            <div class="project-card">
-                <div>
-                    <div class="project-num">Projeto 01</div>
-                    <h3> Controle Financeiro </h3>
+                    <div class="projects-filters" role="group" aria-label="Filtrar projetos por categoria">
+                        <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">
+                            Todos
+                        </button>
+                        <button type="button" class="filter-btn" data-filter="fullstack" aria-pressed="false">
+                            Full-Stack
+                        </button>
+                        <button type="button" class="filter-btn" data-filter="frontend" aria-pressed="false">
+                            Frontend &amp; UI
+                        </button>
+                    </div>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- DESTAQUE: VIBETRACK -->
+                    <article class="project-card project-card--featured" data-category="fullstack">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">frontend-six-sandy-45.vercel.app</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="vibetrack"
+                                aria-label="Ampliar detalhes e visualização do projeto VibeTrack">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/vibetrack.png"
+                                        alt="Prévia da interface do aplicativo VibeTrack" loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge project-badge--featured">Destaque</span>
+                                <span class="project-badge">Full-Stack · IA Multimodal</span>
+                                <span class="project-badge project-badge--live">Online</span>
+                            </div>
+
+                            <h3 class="project-title">VibeTrack</h3>
+                            <p class="project-desc">
+                                Aplicativo instalável (PWA) que analisa fotografias com Google Gemini — interpretando
+                                clima, emoções e estética visual — para recomendar faixas musicais justificadas com
+                                player de prévia integrado e histórico por conta.
+                            </p>
+
+                            <ul class="project-highlights">
+                                <li>API REST tipada em TypeScript com Express, Prisma ORM, PostgreSQL e validação Zod.</li>
+                                <li>Autenticação JWT com proteção Helmet, testes automatizados (Vitest + Supertest) e deploy contínuo.</li>
+                            </ul>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">TypeScript</span>
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">Node.js</span>
+                                <span class="project-pill">Gemini AI</span>
+                                <span class="project-pill">Prisma</span>
+                                <span class="project-pill">PostgreSQL</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://frontend-six-sandy-45.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--primary"
+                                    aria-label="Abrir demonstração ao vivo do VibeTrack">
+                                    <span>Demo ao vivo</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/gabrieelsza/vibeTrack" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--secondary"
+                                    aria-label="Ver código-fonte do VibeTrack no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="vibetrack">
+                                    Arquitetura <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- FOODEXPRESS -->
+                    <article class="project-card" data-category="fullstack">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">github.com/gabrieelsza/FoodExpress</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="foodexpress"
+                                aria-label="Ampliar detalhes e visualização do projeto FoodExpress">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/foodexpress.png"
+                                        alt="Prévia do sistema FoodExpress com cardápio digital e painel de preparo"
+                                        loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge">Full-Stack · Gestão &amp; Pedidos</span>
+                            </div>
+
+                            <h3 class="project-title">FoodExpress</h3>
+                            <p class="project-desc">
+                                Sistema web de autoatendimento digital e gestão operacional de pedidos para restaurantes
+                                — unindo cardápio mobile-first, pedidos no salão ou delivery via WhatsApp e painel
+                                administrativo em tempo real.
+                            </p>
+
+                            <ul class="project-highlights">
+                                <li>Backend em camadas (Controllers, Services, Repositories) com Drizzle ORM + SQLite WAL.</li>
+                                <li>Autenticação JWT + scrypt e testes automatizados com Vitest, Supertest e GitHub Actions.</li>
+                            </ul>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">Node.js</span>
+                                <span class="project-pill">Drizzle ORM</span>
+                                <span class="project-pill">SQLite</span>
+                                <span class="project-pill">Tailwind CSS</span>
+                                <span class="project-pill">Vitest</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://github.com/gabrieelsza/FoodExpress" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--primary"
+                                    aria-label="Ver repositório do FoodExpress no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>Ver repositório</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="foodexpress">
+                                    Arquitetura <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- TICKET HUB -->
+                    <article class="project-card" data-category="fullstack">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">ticket-hub-bay.vercel.app</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="tickethub"
+                                aria-label="Ampliar detalhes e visualização do projeto Ticket Hub">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/tickethub.png"
+                                        alt="Prévia da plataforma Ticket Hub com catálogo de filmes e eventos"
+                                        loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge">Full-Stack · Eventos &amp; APIs</span>
+                                <span class="project-badge project-badge--live">Online</span>
+                            </div>
+
+                            <h3 class="project-title">Ticket Hub</h3>
+                            <p class="project-desc">
+                                Plataforma completa de venda de ingressos para eventos e filmes com perfis de
+                                Organizador, Cliente e Portaria, mapa de assentos protegido contra concorrência e
+                                check-in com bloqueio de reuso.
+                            </p>
+
+                            <ul class="project-highlights">
+                                <li>Integração real com APIs TMDb e Ticketmaster Discovery + PostgreSQL com Prisma.</li>
+                                <li>Containerizado com Docker Compose e validado por testes com Jest e Supertest.</li>
+                            </ul>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">Node.js</span>
+                                <span class="project-pill">PostgreSQL</span>
+                                <span class="project-pill">Prisma</span>
+                                <span class="project-pill">Docker</span>
+                                <span class="project-pill">Jest</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://ticket-hub-bay.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    class="project-btn project-btn--primary"
+                                    aria-label="Abrir demonstração ao vivo do Ticket Hub">
+                                    <span>Demo ao vivo</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/gabrieelsza/ticket-hub" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--secondary"
+                                    aria-label="Ver código-fonte do Ticket Hub no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="tickethub">
+                                    Arquitetura <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- MARIANA CÂMARA -->
+                    <article class="project-card" data-category="frontend">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">marianacamera.vercel.app</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="marianacamera"
+                                aria-label="Ampliar detalhes e visualização do portfólio Mariana Câmara">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/marianacamera.png"
+                                        alt="Prévia do portfólio editorial de Mariana Câmara" loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge">Frontend · Editorial</span>
+                                <span class="project-badge project-badge--live">Online</span>
+                            </div>
+
+                            <h3 class="project-title">Mariana Câmara</h3>
+                            <p class="project-desc">
+                                Portfólio criativo sob medida para profissional de Comunicação, Publicidade e
+                                Audiovisual, construído com direção de arte marcante, tipografia personalizada e foco em
+                                conversão de orçamentos.
+                            </p>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">Tailwind CSS</span>
+                                <span class="project-pill">Vite</span>
+                                <span class="project-pill">Vitest</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://marianacamera.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    class="project-btn project-btn--primary"
+                                    aria-label="Abrir demonstração ao vivo do portfólio Mariana Câmara">
+                                    <span>Demo ao vivo</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/gabrieelsza/marianacamera" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--secondary"
+                                    aria-label="Ver código-fonte do portfólio Mariana Câmara no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="marianacamera">
+                                    Detalhes <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PLANEJAI -->
+                    <article class="project-card" data-category="frontend">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">planej-ai-five.vercel.app</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="planejai"
+                                aria-label="Ampliar detalhes e visualização do projeto planejAI">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/planejai.png"
+                                        alt="Prévia do simulador financeiro planejAI" loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge">Frontend · Finanças</span>
+                                <span class="project-badge project-badge--live">Online</span>
+                            </div>
+
+                            <h3 class="project-title">planejAI</h3>
+                            <p class="project-desc">
+                                Aplicação web de simulação e planejamento financeiro pessoal com jornada guiada em
+                                etapas, tipagem estrita em TypeScript, estados de carregamento com Skeleton UI e
+                                resultados personalizados.
+                            </p>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">TypeScript</span>
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">React Router</span>
+                                <span class="project-pill">Tailwind CSS</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://planej-ai-five.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    class="project-btn project-btn--primary"
+                                    aria-label="Abrir demonstração ao vivo do planejAI">
+                                    <span>Demo ao vivo</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/gabrieelsza/planejAI" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--secondary"
+                                    aria-label="Ver código-fonte do planejAI no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="planejai">
+                                    Detalhes <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- SALON -->
+                    <article class="project-card" data-category="frontend">
+                        <div class="project-media">
+                            <div class="project-chrome" aria-hidden="true">
+                                <div class="project-chrome-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <span class="project-chrome-url">landing-salon-three.vercel.app</span>
+                            </div>
+                            <button type="button" class="project-frame-trigger" data-project-open="salon"
+                                aria-label="Ampliar detalhes e visualização do projeto Lugar da Mulher">
+                                <div class="project-frame-viewport">
+                                    <img src="./src/imagens/projects/salon.png"
+                                        alt="Prévia da landing page Lugar da Mulher para salão de beleza" loading="lazy">
+                                </div>
+                                <span class="project-media-hint">Ver detalhes ↗</span>
+                            </button>
+                        </div>
+
+                        <div class="project-body">
+                            <div class="project-meta">
+                                <span class="project-badge">Frontend · Landing Page</span>
+                                <span class="project-badge project-badge--live">Online</span>
+                            </div>
+
+                            <h3 class="project-title">Lugar da Mulher — Salon</h3>
+                            <p class="project-desc">
+                                Landing page comercial responsiva para salão de beleza, pensada com hierarquia visual
+                                acolhedora, apresentação de serviços, diferenciais e agendamento direto pelo WhatsApp.
+                            </p>
+
+                            <div class="project-stack" aria-label="Tecnologias utilizadas">
+                                <span class="project-pill">React</span>
+                                <span class="project-pill">Tailwind CSS</span>
+                                <span class="project-pill">Vite</span>
+                                <span class="project-pill">Mobile-First</span>
+                            </div>
+
+                            <div class="project-actions">
+                                <a href="https://landing-salon-three.vercel.app/" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--primary"
+                                    aria-label="Abrir demonstração ao vivo do projeto Lugar da Mulher">
+                                    <span>Demo ao vivo</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M7 17 17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/gabrieelsza/landing-salon" target="_blank"
+                                    rel="noopener noreferrer" class="project-btn project-btn--secondary"
+                                    aria-label="Ver código-fonte do projeto Lugar da Mulher no GitHub">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path
+                                            d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                                    </svg>
+                                    <span>GitHub</span>
+                                </a>
+                                <button type="button" class="project-btn project-btn--details"
+                                    data-project-open="salon">
+                                    Detalhes <i class="fa-solid fa-arrow-right-long"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="projects-footer-cta">
                     <p>
-                        Aplicação web criada para registrar entradas e saídas financeiras, permitindo visualizar
-                        lançamentos e acompanhar a organização do orçamento pessoal. A abordagem técnica utilizou
-                        manipulação do DOM, estruturação de dados em objetos JavaScript, renderização dinâmica da tabela
-                        e persistência de informações no navegador com localStorage.
+                        Quer explorar outros repositórios, estudos de <strong>autenticação JWT</strong>,
+                        <strong>e-commerces</strong> e experimentos em código aberto?
                     </p>
-                    <div class="tech-pills">
-                        <span class="tech-pill">JavaScript</span>
-                        <span class="tech-pill">CSS</span>
-                        <span class="tech-pill">LocalStorage</span>
-                    </div>
-                    <a href="https://gabrieelsza.github.io/controle-financeiro/" target="_blank" class="project-link">Ver Projeto</a>
-                </div>
-                <div class="project-visual"
-                    style="background: url(./src/imagens/fin.png); background-size: cover; object-fit: cover;">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-num">Projeto 02</div>
-                    <h3> E-commerce </h3>
-                    <p>
-                        Projeto de e-commerce/catálogo digital desenvolvido para apresentar camisetas nacionais,
-                        internacionais, NBA, NFL e opções personalizadas de forma visual e comercial. A abordagem
-                        técnica foi pensada para exibir produtos, categorias e chamadas de ação com navegação simples,
-                        layout responsivo e estrutura preparada para evolução futura com dados dinâmicos.
-                    </p>
-                    <div class="tech-pills">
-                        <span class="tech-pill">JavaScript</span>
-                        <span class="tech-pill">CSS</span>
-                        <span class="tech-pill">JSON</span>
-                    </div>
-                    <a href="https://gabrieelsza.github.io/jm_imports/" target="_blank" class="project-link">Ver Projeto</a>
-                </div>
-                <div class="project-visual"
-                    style="background: url(./src/imagens/eco.png); background-size: cover; object-fit: cover;">
-                </div>
-            </div>
-
-            <div class="project-card">
-                <div>
-                    <div class="project-num">Projeto 03</div>
-                    <h3> Delícias do Chefe </h3>
-                    <p> Site institucional desenvolvido para apresentar serviços de buffet para diferentes tipos de
-                        eventos, como casamento, aniversário, formatura e corporativo. A abordagem técnica foi focada em
-                        uma interface responsiva, organização de seções, apresentação clara dos serviços e integração de
-                        formulário de contato para facilitar o atendimento ao cliente.
-                    </p>
-                    <div class="tech-pills">
-                        <span class="tech-pill">JavaScript</span>
-                        <span class="tech-pill">CSS</span>
-                        <span class="tech-pill">EmailJs</span>
-                    </div>
-                    <a href="https://gabrieelsza.github.io/site-oficial-buffet/" target="_blank" class="project-link">Ver Projeto </a>
-                </div>
-                <div class="project-visual" onclick=""
-                    style="background: url(./src/imagens/buf.png); background-size: cover; object-fit: cover;">
+                    <a href="https://github.com/gabrieelsza?tab=repositories" target="_blank" rel="noopener noreferrer"
+                        class="projects-footer-link">
+                        <span>Todos os repositórios</span>
+                        <span aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </a>
                 </div>
             </div>
         </section>
 
         <section id="journey">
-            <span class="eyebrow">04 — Jornada</span>
+            <span class="eyebrow">Jornada</span>
             <h2 class="journey-title">Uma linha do tempo, ainda em construção.</h2>
             <div class="journey-track">
                 <div class="journey-item">
@@ -428,57 +821,99 @@
         </section>
 
         <section id="githubsec">
-            <div style="background:var(--mustard); margin:0 -8vw; padding:120px 8vw;">
-                <span class="eyebrow">05 — GitHub</span>
-                <h2 class="github-title">Atividade em números.</h2>
-                <div class="github-stats">
-                    <div class="stat-card">
-                        <div class="stat-num" id="repo"> 30+</div>
-                        <div class="stat-label">Repositórios</div>
+            <div class="github-inner">
+                <div class="github-header">
+                    <div>
+                        <span class="eyebrow">GitHub</span>
+                        <h2 class="github-title">Código aberto, prática constante.</h2>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-num"> 5+ </div>
-                        <div class="stat-label">Projetos</div>
+                    <a href="https://github.com/gabrieelsza" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-solid">
+                        <span>Visitar GitHub</span>
+                        <span aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
+                    </a>
+                </div>
+
+                <div class="github-pillars">
+                    <div class="pillar-card">
+                        <span class="pillar-kicker">Frontend &amp; UX</span>
+                        <h3 class="pillar-title">React · TypeScript</h3>
+                        <p class="pillar-desc">Interfaces responsivas, acessíveis e componentizadas com Vite e Tailwind CSS.</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-num" id="commits">340+</div>
-                        <div class="stat-label">Commits</div>
+                    <div class="pillar-card">
+                        <span class="pillar-kicker">APIs &amp; Dados</span>
+                        <h3 class="pillar-title">Node.js · SQL</h3>
+                        <p class="pillar-desc">Backends em camadas com Express, Prisma, Drizzle ORM, PostgreSQL e SQLite.</p>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-num">TS / JS</div>
-                        <div class="stat-label">Mais usadas</div>
+                    <div class="pillar-card">
+                        <span class="pillar-kicker">Confiabilidade</span>
+                        <h3 class="pillar-title">Testes &amp; CI</h3>
+                        <p class="pillar-desc">Validação de fluxos e regras de negócio com Vitest, Jest, Supertest e Actions.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <span class="pillar-kicker">Produção</span>
+                        <h3 class="pillar-title">Docker · Cloud</h3>
+                        <p class="pillar-desc">Aplicações containerizadas e publicadas continuamente na Vercel e na Render.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="contact">
-            <span class="eyebrow">06 — Contato</span>
+            <span class="eyebrow">Contato</span>
             <div class="contact-grid">
                 <form id="contact-form">
                     <h2 class="contact-title">Vamos conversar.</h2>
                     <div class="field">
-                        <label>Nome </label>
+                        <label for="name">Nome</label>
                         <input type="text" id="name" placeholder="Seu nome">
                     </div>
                     <div class="field">
-                        <label>Email </label>
+                        <label for="mailito">Email</label>
                         <input type="email" id="mailito" placeholder="seu@email.com">
                     </div>
-                    <div class="field"> <label> Mensagem </label>
-                        <textarea rows="4" placeholder="Sua mensagem" id="message">
-                        </textarea>
+                    <div class="field">
+                        <label for="message">Mensagem</label>
+                        <textarea rows="4" placeholder="Sua mensagem" id="message"></textarea>
                     </div>
-                    <button class="btn btn-solid" id="btnSubmit"> Enviar mensagem </button>
+                    <button class="btn btn-solid" id="btnSubmit">Enviar mensagem</button>
                 </form>
                 <div class="contact-links">
-                    <a href="https://github.com/gabrieelsza" target="_blank">  GitHub </a>
-                    <a href="https://www.linkedin.com/in/gabriel-leonardo-" target="_blank"> LinkedIn </a>
-                    <a href="mailto:biel.leonardo300@gmail.com"> Email </a>
+                    <a href="https://github.com/gabrieelsza" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/gabriel-leonardo-/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a>
+                    <a href="mailto:biel.leonardo300@gmail.com">Email</a>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- MODAL DE DETALHES E PREVIEW DOS PROJETOS -->
+    <div id="project-modal" class="project-modal" role="dialog" aria-modal="true"
+        aria-labelledby="modal-project-title" aria-hidden="true">
+        <div class="project-modal-backdrop" aria-hidden="true"></div>
+        <div class="project-modal-dialog" role="document">
+            <div class="project-modal-top">
+                <span id="modal-project-kicker" class="project-modal-kicker"></span>
+                <button type="button" class="project-modal-close" aria-label="Fechar detalhes do projeto">×</button>
+            </div>
+            <div class="project-modal-media">
+                <img id="modal-project-image" src="" alt="">
+            </div>
+            <div class="project-modal-content">
+                <h3 id="modal-project-title" class="project-modal-title"></h3>
+                <p id="modal-project-summary" class="project-modal-summary"></p>
+
+                <div class="project-modal-section-label">Destaques de Engenharia &amp; Arquitetura</div>
+                <ul id="modal-project-highlights" class="project-modal-list"></ul>
+
+                <div class="project-modal-section-label">Stack Utilizada</div>
+                <div id="modal-project-stack" class="project-modal-stack"></div>
+
+                <div id="modal-project-actions" class="project-modal-actions"></div>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="foot-line">"Construindo soluções, uma linha de código por vez."</div>

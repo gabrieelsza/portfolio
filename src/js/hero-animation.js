@@ -6,7 +6,6 @@
   body.classList.add("hero-js-enabled");
 
   const introScreen = document.getElementById("intro-screen");
-  const introCounter = document.getElementById("intro-counter");
   const introSkipBtn = document.getElementById("intro-skip");
 
   let introFinished = false;
@@ -33,7 +32,9 @@
   }
 
   function startIntroSequence() {
-    if (!introScreen || prefersReducedMotion) {
+    const hasSectionHash = window.location.hash && window.location.hash !== "#hero";
+
+    if (!introScreen || prefersReducedMotion || hasSectionHash) {
       if (introScreen) introScreen.classList.add("is-done");
       body.classList.remove("intro-active");
       body.classList.add("hero-revealed");
@@ -43,29 +44,7 @@
 
     body.classList.add("intro-active");
 
-    const duration = 950;
-    const startTime = performance.now();
-
-    function tick(now) {
-      if (introFinished) return;
-      const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / duration);
-      // Ease-out cubic for snappy percentage readout
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const pct = Math.round(eased * 100);
-
-      if (introCounter) {
-        introCounter.textContent = `${String(pct).padStart(3, "0")}%`;
-      }
-
-      if (progress < 1) {
-        window.requestAnimationFrame(tick);
-      } else {
-        window.setTimeout(revealHero, 120);
-      }
-    }
-
-    window.requestAnimationFrame(tick);
+    window.setTimeout(revealHero, 1050);
 
     // Allow instant skip via button or Escape key
     if (introSkipBtn) {
