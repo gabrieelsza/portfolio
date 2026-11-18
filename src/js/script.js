@@ -81,11 +81,14 @@ if (!prefersReducedMotion && 'IntersectionObserver' in window) {
         });
     }, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
 
+    const initialHashId = window.location.hash ? window.location.hash.slice(1) : '';
+
     mainSections.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const isBelowFold = rect.top > window.innerHeight * 0.95;
+        const isInitialHashTarget = initialHashId && el.id === initialHashId;
 
-        if (isBelowFold) {
+        if (isBelowFold && !isInitialHashTarget) {
             el.style.opacity = '0';
             el.style.transform = 'translateY(24px)';
             el.style.transition = 'opacity .65s ease, transform .65s ease';

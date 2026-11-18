@@ -232,73 +232,8 @@ section,
 
 /* ===== PROJECTS (Refactored styles live in ./projects.css) ===== */
 
-/* ===== JOURNEY ===== */
-#journey {
-  z-index: 2;
-}
+/* ===== JOURNEY / EXPERIENCE (Refactored styles live in ./journey.css) ===== */
 
-.journey-title {
-  font-size: clamp(34px, 4.5vw, 56px);
-  margin-bottom: 80px;
-}
-
-.journey-track {
-  position: relative;
-  padding-left: 60px;
-}
-
-.journey-item {
-  position: relative;
-  padding-bottom: 60px;
-}
-
-.journey-item:last-child {
-  padding-bottom: 0;
-}
-
-.journey-dot {
-  position: absolute;
-  left: -60px;
-  top: 4px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--cream);
-  border: 3px solid var(--red);
-}
-
-.journey-item.goal .journey-dot {
-  background: var(--red);
-  border-color: var(--black);
-}
-
-.journey-year {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--brown);
-  letter-spacing: 0.1em;
-  margin-bottom: 6px;
-}
-
-.journey-item h3 {
-  font-size: 22px;
-}
-
-.journey-item.goal h3 {
-  color: var(--red);
-}
-
-.journey-item ul li {
-  list-style: none;
-  margin-top: .8rem;
-  max-width: 600px;
-
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--brown);
-  letter-spacing: 0.1em;
-  margin-bottom: 6px;
-}
 /* ===== GITHUB ===== */
 #githubsec {
   background: var(--mustard);
